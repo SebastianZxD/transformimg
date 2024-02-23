@@ -4,7 +4,7 @@ import { type ClassValue, clsx } from "clsx";
 import qs from 'qs';
 import { twMerge } from "tailwind-merge";
 
-import { aspectRatioOptions } from "@/constants";
+import { aspectRatioOptions, transformationTypes } from "@/constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -155,3 +155,12 @@ export const deepMergeObjects = (obj1: any, obj2: any) => {
 
   return output;
 };
+
+
+export function getTransformationTitle(transformationType: string) {
+  if (transformationTypes[transformationType as keyof typeof transformationTypes]) {
+    return transformationTypes[transformationType as keyof typeof transformationTypes].title;
+  } else {
+    return "Transformation type not found";
+  }
+}
